@@ -1,0 +1,32 @@
+services:
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:latest
+    container_name: calibre-web
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Tbilisi
+    volumes:
+      - /home/temo-lab/calibre-library:/books
+      - calibre_config:/config
+    ports:
+      - "127.0.0.1:8083:8083"
+    restart: unless-stopped
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "127.0.0.1:9443:9443"
+    restart: unless-stopped
+
+volumes:
+  calibre_config:
+    external: true
+    name: 2dd32fb99bff262824b14360fff08a0e0eec7efe018babaa1db1c69788449785
+  portainer_data:
+    external: true
+    name: portainer_data
