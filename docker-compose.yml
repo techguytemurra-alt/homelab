@@ -23,6 +23,15 @@ services:
       - "127.0.0.1:9443:9443"
     restart: unless-stopped
 
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html:ro
+    ports:
+      - "127.0.0.1:8080:80"
+    restart: unless-stopped
+
 volumes:
   calibre_config:
     external: true
