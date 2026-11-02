@@ -1,2 +1,2 @@
-# homelab
+# home-lab
 temos-home-lab
